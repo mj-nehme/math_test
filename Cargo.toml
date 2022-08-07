@@ -1,9 +1,11 @@
 [package]
 name = "math_test"
-version = "0.1.1"
+version = "0.1.2"
 edition = "2021"
 license = "Apache-2.0"
+authors = ["Mohamad Jaafar NEHME"]
 description = "Generates math questions for elementary school kids"
+repository = "https://github.com/mj-nehme/math_test"
 
 [dependencies]
 rand = "0.8.5"

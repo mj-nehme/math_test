@@ -23,12 +23,12 @@ pub enum EquationType {
 impl QuestionType {
     pub fn get(game_option: i32) -> Result<Self, &'static str> {
         match game_option {
-            1 => Ok(Self::Operation(OperationType::Addition)),
-            2 => Ok(Self::Operation(OperationType::Subtraction)),
-            3 => Ok(Self::Operation(OperationType::Multiplication)),
-            4 => Ok(Self::Operation(OperationType::Division)),
-            5 => Ok(Self::Equation(EquationType::OneVariable)),
-            6 => Ok(Self::Equation(EquationType::TwoVariables)),
+            1 => Ok(QuestionType::Operation(OperationType::Addition)),
+            2 => Ok(QuestionType::Operation(OperationType::Subtraction)),
+            3 => Ok(QuestionType::Operation(OperationType::Multiplication)),
+            4 => Ok(QuestionType::Operation(OperationType::Division)),
+            5 => Ok(QuestionType::Equation(EquationType::OneVariable)),
+            6 => Ok(QuestionType::Equation(EquationType::TwoVariables)),
             _ => Err("Not found option"),
         }
     }

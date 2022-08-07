@@ -11,7 +11,8 @@ use std::time::{Duration};
 
 fn generate_question(question_type: &QuestionType, level: i32) -> bool {
 
-    let timeout = 10;
+    //TODO: To be changed to seconds
+    let timeout = 10000; //in milliseconds
     let max = 10;
 
     // TODO: Make a smarter leveling mechanism (Something like exponential)
@@ -24,19 +25,24 @@ fn generate_question(question_type: &QuestionType, level: i32) -> bool {
 
     thread::spawn(move || {
     let answer = number::read_number();
-    tx.send(answer).unwrap();
+
+    match tx.send(answer) {
+        Ok(()) => {},
+        Err(e) => panic!("Channel error: {}", e),
+    }
     });
 
-    let mut timer = 0; 
+    let mut timer = 0;
+    let lap = 500;
     loop {
 
-        timer +=1;
+        timer +=lap;
         if timer > timeout {
             
             println!("Timeout!");
             return false;}
     
-        let millis = Duration::from_millis(500);
+        let millis = Duration::from_millis(lap);
         thread::sleep(millis);
 
         match rx.try_recv() {
