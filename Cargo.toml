@@ -2,8 +2,8 @@
 name = "math_quiz"
 version = "0.1.0"
 edition = "2021"
-
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+license = "Apache-2.0"
+description = "Generates math questions for elementary school kids"
 
 [dependencies]
 rand = "0.8.5"
