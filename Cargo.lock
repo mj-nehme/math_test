@@ -26,8 +26,8 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "349d5a591cd28b49e1d1037471617a32ddcda5731b99419008085f72d5a53836"
 
 [[package]]
-name = "math_quiz"
-version = "0.1.0"
+name = "math_test"
+version = "0.1.1"
 dependencies = [
  "rand",
 ]

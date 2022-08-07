@@ -3,7 +3,7 @@ mod number;
 mod operation;
 mod question;
 mod question_type;
-use math_quiz::{generate_exam, print_list};
+use math_test::{generate_exam, print_list};
 
 fn main() {
     let number_of_questions = 10;

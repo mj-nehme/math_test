@@ -1,6 +1,6 @@
 [package]
-name = "math_quiz"
-version = "0.1.0"
+name = "math_test"
+version = "0.1.1"
 edition = "2021"
 license = "Apache-2.0"
 description = "Generates math questions for elementary school kids"
