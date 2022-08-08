@@ -21,8 +21,6 @@ fn main() {
 }
 
 pub fn validate_level(level: i32) {
-    // TODO: levels to be read from Config file
-    // TODO: levels to be handled automatically
 
     if level < 1 || level > 10 {
         panic!("Sorry you're not smart enough to follow the rules!");

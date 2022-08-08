@@ -11,11 +11,9 @@ use std::time::{Duration};
 
 fn generate_question(question_type: &QuestionType, level: i32) -> bool {
 
-    //TODO: To be changed to seconds
     let timeout = 10000; //in milliseconds
     let max = 10;
 
-    // TODO: Make a smarter leveling mechanism (Something like exponential)
     let function = Operation::new(*question_type, max * level as i32);
 
     function.print(*question_type);

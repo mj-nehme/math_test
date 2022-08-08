@@ -34,7 +34,6 @@ impl Question for OneVariable {
     }
 
     fn choose_variable(min: i32, max: i32) -> i32 {
-        // TODO: replace the naive method of avoiding 0
         let mut rng = rand::thread_rng();
         let mut num = 0;
         loop {
@@ -69,7 +68,6 @@ impl Question for OneVariable {
     }
 
     fn print(&self, question_type: QuestionType) {
-        //TODO: Get rid of question_type
         if self.b < 0 {
             println!("{}x{}={}", self.a, self.b, self.result);
         } else {
