@@ -4,6 +4,8 @@ use crate::{
 };
 use rand::Rng;
 
+use super::Equation;
+
 #[derive(Debug)]
 pub struct TwoVariables {
     a: i32,
@@ -13,7 +15,29 @@ pub struct TwoVariables {
 }
 
 impl Question for TwoVariables {
-    fn new(operation: QuestionType, max: i32) -> Self {
+    fn new(question_type: QuestionType, max: i32) -> Self {
+        todo!()
+    }
+
+    fn choose_variable(min: i32, max: i32) -> i32 {
+        todo!()
+    }
+
+    fn get_expected_answer(&self) -> i32 {
+        todo!()
+    }
+
+    fn calculate(&self, question_type: QuestionType) -> i32 {
+        todo!()
+    }
+
+    fn print(&self, question_type: QuestionType) {
+        todo!()
+    }
+}
+
+impl Equation for TwoVariables {
+    fn new(equation: QuestionType, max: i32) -> Self {
         panic!("TwoVariables not implemented yet");
     }
 
@@ -21,7 +45,7 @@ impl Question for TwoVariables {
         1
     }
 
-    fn get_result(&self) -> i32 {
+    fn get_expected_answer(&self) -> i32 {
         self.result
     }
 

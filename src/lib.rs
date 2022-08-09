@@ -1,45 +1,69 @@
+mod equation;
 mod number;
 mod operation;
 mod question;
 mod question_type;
+use equation::onevariable;
+use equation::onevariable::OneVariable;
+use equation::twovariables::TwoVariables;
+use equation::Equation;
 use operation::Operation;
 use question::Question;
 use question_type::QuestionType;
 use std::sync::mpsc;
 use std::thread;
-use std::time::{Duration};
+use std::time::Duration;
 
 fn generate_question(question_type: &QuestionType, level: i32) -> bool {
-
     let timeout = 10000; //in milliseconds
-    let max = 10;
-
-    let function = Operation::new(*question_type, max * level as i32);
-
-    function.print(*question_type);
-    let expected = function.get_result();
+    let max_baseline = 10;
+    let max = max_baseline * level as i32;
+    let expected = match question_type {
+        QuestionType::Operation(t) => {
+            let function = Operation::new(QuestionType::Operation(*t), max);
+            function.print(*question_type);
+            function.get_expected_answer()
+        }
+        QuestionType::Equation(t) => match t {
+            question_type::EquationType::OneVariable => {
+                let function = <OneVariable as Equation>::new(
+                    QuestionType::Equation(question_type::EquationType::OneVariable),
+                    max,
+                );
+                Equation::print(&function, *question_type);
+                Equation::get_expected_answer(&function)
+            }
+            question_type::EquationType::TwoVariables => {
+                let function = <TwoVariables as Equation>::new(
+                    QuestionType::Equation(question_type::EquationType::TwoVariables),
+                    max,
+                );
+                Equation::print(&function, *question_type);
+                Equation::get_expected_answer(&function)
+            }
+        },
+    };
 
     let (tx, rx) = mpsc::channel();
 
     thread::spawn(move || {
-    let answer = number::read_number();
+        let answer = number::read_number();
 
-    match tx.send(answer) {
-        Ok(()) => {},
-        Err(e) => panic!("Channel error: {}", e),
-    }
+        match tx.send(answer) {
+            Ok(()) => {}
+            Err(e) => panic!("Channel error: {}", e),
+        }
     });
 
     let mut timer = 0;
     let lap = 500;
     loop {
-
-        timer +=lap;
+        timer += lap;
         if timer > timeout {
-            
             println!("Timeout!");
-            return false;}
-    
+            return false;
+        }
+
         let millis = Duration::from_millis(lap);
         thread::sleep(millis);
 
@@ -53,7 +77,7 @@ fn generate_question(question_type: &QuestionType, level: i32) -> bool {
                     return false;
                 }
             }
-            Err (_) => {}
+            Err(_) => {}
         }
     }
 }

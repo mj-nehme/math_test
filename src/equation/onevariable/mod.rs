@@ -2,7 +2,10 @@ use crate::{
     question::Question,
     question_type::{EquationType, QuestionType},
 };
+
 use rand::Rng;
+
+use super::Equation;
 
 #[derive(Debug)]
 pub struct OneVariable {
@@ -13,15 +16,38 @@ pub struct OneVariable {
 }
 
 impl Question for OneVariable {
-    fn new(operation: QuestionType, max: i32) -> Self {
-        match operation {
+    fn new(question_type: QuestionType, max: i32) -> Self {
+        todo!()
+    }
+
+    fn choose_variable(min: i32, max: i32) -> i32 {
+        todo!()
+    }
+
+    fn get_expected_answer(&self) -> i32 {
+        todo!()
+    }
+
+    fn calculate(&self, question_type: QuestionType) -> i32 {
+        todo!()
+    }
+
+    fn print(&self, question_type: QuestionType) {
+        todo!()
+    }
+}
+
+impl Equation for OneVariable {
+    fn new(equation: QuestionType, max: i32) -> Self {
+        match equation {
             QuestionType::Equation(EquationType::OneVariable) => {
                 //ax+b=result
-                let x: i32 = Self::choose_variable(-max, max);
-                let a: i32 = Self::choose_variable(-max, max);
-                let b: i32 = Self::choose_variable(-max, max);
+                let x: i32 = <OneVariable as Equation>::choose_variable(-max, max);
+                let a: i32 = <OneVariable as Equation>::choose_variable(-max, max);
+                let b: i32 = <OneVariable as Equation>::choose_variable(-max, max);
 
-                let result = OneVariable::calculate(&Self { a, b, result: 0, x }, operation);
+                let result =
+                    <OneVariable as Equation>::calculate(&Self { a, b, result: 0, x }, equation);
                 Self { a, x, b, result }
             }
             QuestionType::Equation(EquationType::TwoVariables) => {
@@ -43,12 +69,12 @@ impl Question for OneVariable {
                 break;
             }
         }
-
+ 
         num
     }
 
-    fn get_result(&self) -> i32 {
-        self.result
+    fn get_expected_answer(&self) -> i32 {
+        self.x
     }
 
     fn calculate(&self, question_type: QuestionType) -> i32 {

@@ -14,7 +14,7 @@ pub struct Operation {
 }
 
 impl Question for Operation {
-    fn new(operation: QuestionType, max: i32) -> Self {
+    fn new(operation: QuestionType, max: i32) -> Operation {
         match operation {
             QuestionType::Operation(OperationType::Division) => {
                 //Calculate the result first in order to avoid fractions
@@ -53,7 +53,7 @@ impl Question for Operation {
         rng.gen_range(min..max)
     }
 
-    fn get_result(&self) -> i32 {
+    fn get_expected_answer(&self) -> i32 {
         self.result
     }
 
