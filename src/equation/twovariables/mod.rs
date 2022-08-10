@@ -14,46 +14,21 @@ pub struct TwoVariables {
     result: i32,
 }
 
+impl Equation for TwoVariables {}
 impl Question for TwoVariables {
-    fn new(question_type: QuestionType, max: i32) -> Self {
-        todo!()
-    }
-
-    fn choose_variable(min: i32, max: i32) -> i32 {
-        todo!()
-    }
-
-    fn get_expected_answer(&self) -> i32 {
-        todo!()
-    }
-
-    fn calculate(&self, question_type: QuestionType) -> i32 {
-        todo!()
-    }
-
-    fn print(&self, question_type: QuestionType) {
-        todo!()
-    }
-}
-
-impl Equation for TwoVariables {
     fn new(equation: QuestionType, max: i32) -> Self {
         panic!("TwoVariables not implemented yet");
-    }
-
-    fn choose_variable(min: i32, max: i32) -> i32 {
-        1
     }
 
     fn get_expected_answer(&self) -> i32 {
         self.result
     }
 
-    fn calculate(&self, question_type: QuestionType) -> i32 {
+    fn calculate(&self) -> i32 {
         1
     }
 
-    fn print(&self, question_type: QuestionType) {}
+    fn print(&self) {}
 }
 
 #[cfg(test)]

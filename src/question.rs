@@ -1,9 +1,24 @@
-use crate::{question_type::{QuestionType}};
+use crate::{number, question_type::QuestionType};
 
 pub trait Question {
     fn new(question_type: QuestionType, max: i32) -> Self;
-    fn choose_variable(min: i32, max: i32) -> i32;
     fn get_expected_answer(&self) -> i32;
-    fn calculate(&self, question_type: QuestionType) -> i32;
-    fn print(&self, question_type: QuestionType);
+    fn calculate(&self) -> i32;
+    fn print(&self);
+
+    fn post(&self) -> bool {
+        let expected = self.get_expected_answer();
+        self.print();
+
+        let answer = number::read_number();
+
+        if answer == expected {
+            println!("Correct Answer!");
+            return true;
+        } else {
+            println!("Wrong! The correct Answer was {}", expected);
+            return false;
+        }
+    }
+
 }

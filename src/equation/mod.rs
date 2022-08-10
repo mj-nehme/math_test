@@ -1,13 +1,21 @@
-use crate::{question::Question, question_type::QuestionType};
-pub mod onevariable;
-pub mod twovariables;
-pub trait Equation
-where
-    Self: Question,
+use rand::Rng;
+pub(crate) mod onevariable;
+pub(crate) mod twovariables;
+use crate::question::Question;
+
+pub trait Equation: Question
 {
-    fn new(question_type: QuestionType, max: i32) -> Self;
-    fn choose_variable(min: i32, max: i32) -> i32;
-    fn get_expected_answer(&self) -> i32;
-    fn calculate(&self, question_type: QuestionType) -> i32;
-    fn print(&self, question_type: QuestionType);
+
+    fn choose_variable(max: i32) -> i32 where
+        Self: Sized,
+    {
+        loop {
+            let mut rng = rand::thread_rng();
+            let num = rng.gen_range(-max..max);
+            //exclude 0
+            if num != 0 {
+                return num;
+            }
+        }
+    }
 }

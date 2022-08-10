@@ -9,8 +9,15 @@ use rand::Rng;
 #[derive(Debug)]
 pub struct Operation {
     pub a: i32,
+    pub op: char,
     pub b: i32,
     pub result: i32,
+}
+impl Operation {
+    fn choose_variable(min: i32, max: i32) -> i32 {
+        let mut rng = rand::thread_rng();
+        rng.gen_range(min..max)
+    }
 }
 
 impl Question for Operation {
@@ -27,8 +34,9 @@ impl Question for Operation {
                         numerator, denominator, result
                     );
                 }
-                Self {
+                Operation {
                     a: numerator,
+                    op: '/',
                     b: denominator,
                     result,
                 }
@@ -36,11 +44,22 @@ impl Question for Operation {
             QuestionType::Operation(operation) => {
                 let a = Self::choose_variable(0, max);
                 let b = Self::choose_variable(0, max);
-                let result = Operation::calculate(
-                    &Self { a, b, result: 0 },
-                    question_type::QuestionType::Operation(operation),
-                );
-                Self { a, b, result }
+                let op = match operation {
+                    OperationType::Addition => '+',
+                    OperationType::Subtraction => '-',
+                    OperationType::Multiplication => '*',
+                    OperationType::Division => {
+                        panic!("Division is erroneously handled")
+                    }
+                };
+                let operation = Operation {
+                    a,
+                    op,
+                    b,
+                    result: 0,
+                };
+                let result = Operation::calculate(&operation);
+                Operation { a, op, b, result }
             }
             QuestionType::Equation(_) => {
                 panic!("Should be handled in Equation");
@@ -48,70 +67,49 @@ impl Question for Operation {
         }
     }
 
-    fn choose_variable(min: i32, max: i32) -> i32 {
-        let mut rng = rand::thread_rng();
-        rng.gen_range(min..max)
-    }
-
     fn get_expected_answer(&self) -> i32 {
         self.result
     }
 
-    fn calculate(&self, question_type: QuestionType) -> i32 {
-        match question_type {
-            QuestionType::Operation(OperationType::Addition) => {
+    fn calculate(&self) -> i32 {
+        match self.op {
+            '+' => {
                 let (result, overloaded) = self.a.overflowing_add(self.b);
                 if overloaded {
                     Self::panic(&self, "Addition Overloaded");
                 }
                 result
             }
-            QuestionType::Operation(OperationType::Subtraction) => {
+            '-' => {
                 let (result, overloaded) = self.a.overflowing_sub(self.b);
                 if overloaded {
                     Self::panic(&self, "Subtraction Overloaded");
                 }
                 result
             }
-            QuestionType::Operation(OperationType::Multiplication) => {
+            '*' => {
                 let (result, overloaded) = self.a.overflowing_mul(self.b);
                 if overloaded {
                     Self::panic(&self, "Multiplication Overloaded");
                 }
                 result
             }
-            QuestionType::Operation(OperationType::Division) => {
+            '/' => {
                 let (result, overloaded) = self.a.overflowing_div(self.b);
                 if overloaded {
                     Self::panic(&self, "Division Overloaded");
                 }
                 result
             }
-            QuestionType::Equation(_) => {
-                panic!("Calculate should be handled in Equation");
+            _ => {
+                panic!("Unknown operator");
             }
         }
     }
 
-    fn print(&self, question_type: QuestionType) {
+    fn print(&self) {
         let mut output: String = self.a.to_string();
-        match question_type {
-            QuestionType::Operation(OperationType::Addition) => {
-                output.push_str(&"+".to_string());
-            }
-            QuestionType::Operation(OperationType::Subtraction) => {
-                output.push_str(&"-".to_string());
-            }
-            QuestionType::Operation(OperationType::Multiplication) => {
-                output.push_str(&"*".to_string());
-            }
-            QuestionType::Operation(OperationType::Division) => {
-                output.push_str(&"/".to_string());
-            }
-            QuestionType::Equation(_) => {
-                panic!("Print should be handled in Equation");
-            }
-        }
+        output.push_str(&self.op.to_string());
         output.push_str(&self.b.to_string());
         println!("{}", output);
     }
