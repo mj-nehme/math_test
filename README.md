@@ -18,10 +18,7 @@ The student can choose one exam out of six:
 
 The student has the option to choose the complexity level up to level 10.
 
-**An exam is made up of 10 questions, where the student should answer each within 10 secs. After the timeout, the answer is considered to be wrong.**
-
-At the end, the score is calculated out of 10.
-
+A test is made up of 10 questions, and so a score is calculated out of 10.
 
 ## Next steps (A contribution room):
 

@@ -3,16 +3,12 @@ mod number;
 mod operation;
 mod question;
 mod question_type;
-use equation::onevariable;
 use equation::onevariable::OneVariable;
 use equation::twovariables::TwoVariables;
 use equation::Equation;
 use operation::Operation;
 use question::Question;
 use question_type::QuestionType;
-use std::sync::mpsc;
-use std::thread;
-use std::time::Duration;
 
 fn generate_question(question_type: &QuestionType, level: i32) -> bool {
     let timeout = 10000; //in milliseconds
@@ -44,41 +40,14 @@ fn generate_question(question_type: &QuestionType, level: i32) -> bool {
         },
     };
 
-    let (tx, rx) = mpsc::channel();
+    let answer = number::read_number();
 
-    thread::spawn(move || {
-        let answer = number::read_number();
-
-        match tx.send(answer) {
-            Ok(()) => {}
-            Err(e) => panic!("Channel error: {}", e),
-        }
-    });
-
-    let mut timer = 0;
-    let lap = 500;
-    loop {
-        timer += lap;
-        if timer > timeout {
-            println!("Timeout!");
-            return false;
-        }
-
-        let millis = Duration::from_millis(lap);
-        thread::sleep(millis);
-
-        match rx.try_recv() {
-            Ok(answer) => {
-                if answer == expected {
-                    println!("Correct Answer!");
-                    return true;
-                } else {
-                    println!("Wrong! The correct Answer was {}", expected);
-                    return false;
-                }
-            }
-            Err(_) => {}
-        }
+    if answer == expected {
+        println!("Correct Answer!");
+        return true;
+    } else {
+        println!("Wrong! The correct Answer was {}", expected);
+        return false;
     }
 }
 
