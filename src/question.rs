@@ -1,6 +1,8 @@
+use std::fmt::Display;
+
 use crate::{number, question_type::QuestionType};
 
-pub trait Question {
+pub trait Question : Display {
     fn new(question_type: QuestionType, max: i32) -> Self;
     fn get_expected_answer(&self) -> i32;
     fn calculate(&self) -> i32;

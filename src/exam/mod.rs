@@ -15,7 +15,7 @@ where
     pub fn new(question_type: QuestionType, level: i32, number_of_questions: i32) -> Exam<impl Question> {
         let mut questions: Vec<T> = Vec::new();
         let max = Self::level_complexity(level);
-        for i in 1..number_of_questions {
+        for i in 0..number_of_questions {
             let question = Question::new(question_type, max);
             questions.push(question);
         }

@@ -1,4 +1,4 @@
-use std::str;
+use std::{str, fmt};
 
 use crate::{
     question::Question,
@@ -17,6 +17,12 @@ impl Operation {
     fn choose_variable(min: i32, max: i32) -> i32 {
         let mut rng = rand::thread_rng();
         rng.gen_range(min..max)
+    }
+}
+
+impl fmt::Display for Operation {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        write!(f, "{} {} {} = ", self.a, self.op, self.b)
     }
 }
 

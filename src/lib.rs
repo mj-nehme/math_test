@@ -38,8 +38,8 @@ fn execute_exam<T: Question>(args: Vec<String>, exam: Exam<T>) {
     if args.len() == 1 {
         exam.post_cmd();
     } else {
-        if args[1] == "--pdf" {
-            pdf::generate_pdf(&exam);
+        if args[1] == "pdf" {
+            pdf::generate_pdf(exam);
         } else {
             panic!("unknown arguments");
         }

@@ -1,3 +1,5 @@
+use std::fmt;
+
 use crate::{
     question::Question,
     question_type::{EquationType, QuestionType},
@@ -12,8 +14,15 @@ pub struct OneVariable {
     b: i32,
     result: i32,
 }
+impl fmt::Display for OneVariable {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        write!(f, "{}x + {} = {}", self.a, self.b, self.result)
+    }
+}
+
 
 impl Equation for OneVariable {}
+
 impl Question for OneVariable {
     fn new(equation: QuestionType, max: i32) -> Self {
         match equation {
