@@ -3,10 +3,9 @@ pub(crate) mod onevariable;
 pub(crate) mod twovariables;
 use crate::question::Question;
 
-pub trait Equation: Question
-{
-
-    fn choose_variable(max: i32) -> i32 where
+pub trait Equation: Question {
+    fn choose_variable(max: i32) -> i32
+    where
         Self: Sized,
     {
         loop {

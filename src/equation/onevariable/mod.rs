@@ -20,7 +20,6 @@ impl fmt::Display for OneVariable {
     }
 }
 
-
 impl Equation for OneVariable {}
 
 impl Question for OneVariable {

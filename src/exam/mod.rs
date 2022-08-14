@@ -1,8 +1,7 @@
 use crate::question::{self, Question};
 use crate::question_type::QuestionType;
 
-pub struct Exam<T: Question>
-{
+pub struct Exam<T: Question> {
     level: i32,
     question_type: QuestionType,
     questions: Vec<T>,
@@ -12,7 +11,11 @@ impl<T> Exam<T>
 where
     T: Question,
 {
-    pub fn new(question_type: QuestionType, level: i32, number_of_questions: i32) -> Exam<impl Question> {
+    pub fn new(
+        question_type: QuestionType,
+        level: i32,
+        number_of_questions: i32,
+    ) -> Exam<impl Question> {
         let mut questions: Vec<T> = Vec::new();
         let max = Self::level_complexity(level);
         for i in 0..number_of_questions {

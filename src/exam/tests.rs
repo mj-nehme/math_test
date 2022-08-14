@@ -1,9 +1,11 @@
 use super::Exam;
-use crate::{operation::Operation, question::Question, question_type::OperationType, question_type::QuestionType};
+use crate::{
+    operation::Operation, question::Question, question_type::OperationType,
+    question_type::QuestionType,
+};
 
 #[test]
 fn test_exam() {
-
     let question_type = QuestionType::Operation(OperationType::Addition);
     let level = 1;
     let number_of_questions = 10;

@@ -1,10 +1,9 @@
-use genpdf::Document;
 use crate::exam::Exam;
+use genpdf::Document;
 
 use crate::question::Question;
 
-pub fn generate_pdf<T:Question>(exam: Exam<T>) {
-
+pub fn generate_pdf<T: Question>(exam: Exam<T>) {
     println!("Generating PDF file...");
     // Load a font from the file system
     let font_family = genpdf::fonts::from_files("./fonts", "LiberationSans", None)
@@ -18,13 +17,12 @@ pub fn generate_pdf<T:Question>(exam: Exam<T>) {
     decorator.set_margins(10);
     doc.set_page_decorator(decorator);
 
-  let questions = exam.get();
-  let mut counter = 1;
+    let questions = exam.get();
+    let mut counter = 1;
     for question in questions {
-
-        push_question (question, counter,  &mut doc);
-        counter +=1;
-    }  
+        push_question(question, counter, &mut doc);
+        counter += 1;
+    }
 
     let file_name = "math_test.pdf";
     // Render the document and write it to a file
@@ -34,10 +32,10 @@ pub fn generate_pdf<T:Question>(exam: Exam<T>) {
     println!("File {} generated", file_name);
 }
 
-fn push_question<T:Question> (question : &T, id: i32, doc: &mut Document){
-    let title= format!("Question {}: ", id);
+fn push_question<T: Question>(question: &T, id: i32, doc: &mut Document) {
+    let title = format!("Question {}: ", id);
     doc.push(genpdf::elements::Paragraph::new(title));
-    
+
     doc.push(genpdf::elements::Paragraph::new(question.to_string()));
 
     doc.push(genpdf::elements::Paragraph::new(""));

@@ -78,7 +78,7 @@ impl fmt::Display for EquationType {
 /*
 impl From<QuestionType> for OperationType {
     fn from(question_type: QuestionType) -> Self {
-        QuestionType::Operation(item) 
+        QuestionType::Operation(item)
     }
 }
 */
