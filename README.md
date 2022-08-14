@@ -2,10 +2,9 @@
 
 A math test prepared for my kids who are still in their elementary school.
 
-Current status: <span style="color:green"> **Running** </span>, but still a long way to be released 🚧.
+Current status: <span style="color:green"> **Running** </span>, but still no ready to be released 🚧. Follow the milestone "[Version 1](https://github.com/mj-nehme/math_test/milestone/1)" for more details.
 
 This project is being built for learning purposes and will be watched and developed in my free time only.
-
 
 ## Description
 The student can choose one exam out of six:
@@ -19,6 +18,8 @@ The student can choose one exam out of six:
 The student has the option to choose the complexity level up to level 10.
 
 A test is made up of 10 questions, and so a score is calculated out of 10.
+
+**Update**: Now, you have the option to prepare a pdf file (ready to be printed). `cargo run -- pdf`
 
 ## Next steps (A contribution room):
 
