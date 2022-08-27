@@ -10,3 +10,6 @@ repository = "https://github.com/mj-nehme/math_test"
 [dependencies]
 genpdf = "0.2.0"
 rand = "0.8.5"
+
+[lib]
+doctest = false

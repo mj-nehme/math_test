@@ -1,7 +1,7 @@
 use std::fmt;
 
 /// QuestionType is an enum that derives into OperationType and EquationType
-///
+///```
 ///            QuestionType
 ///        _________|_________
 ///        |                 |
@@ -9,15 +9,20 @@ use std::fmt;
 ///                 _________|_________
 ///                 |                 |
 ///             OneVariable     TwoVariables
+///```
 ///
-#[derive(Debug, Copy, Clone, PartialEq)]
 #[allow(dead_code)]
+#[derive(Debug, Copy, Clone, PartialEq)]
 pub enum QuestionType {
     Operation(OperationType),
     Equation(EquationType),
 }
 
-/// OperationType is an enum that has Addition, Subtraction, Multiplication and Division
+/// OperationType is an enum that has
+/// - Addition
+/// - Subtraction
+/// - Multiplication
+/// - Division
 #[allow(dead_code)]
 #[derive(Debug, Copy, Clone, PartialEq)]
 pub enum OperationType {
@@ -32,6 +37,7 @@ pub enum OperationType {
 ///      _________|_________
 ///      |                 |
 ///  OneVariable     TwoVariables
+///
 #[allow(dead_code)]
 #[derive(Debug, Copy, Clone, PartialEq)]
 pub enum EquationType {

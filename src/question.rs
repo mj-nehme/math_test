@@ -1,6 +1,6 @@
-use std::fmt::Display;
-
 use crate::question_type::QuestionType;
+use std::fmt::Debug;
+use std::fmt::Display;
 
 /// Question Trait is the supertrait that can be either an Equation or an Operation
 ///
@@ -10,10 +10,10 @@ use crate::question_type::QuestionType;
 ///  Operation         Equation
 ///               _________|_________
 ///               |                 |
-///           OneVariable     TwoVariables
+///          OneVariable      TwoVariables
 ///
 pub trait Question: Display {
-    type Output: PartialEq;
+    type Output: PartialEq + Debug;
 
     fn new(question_type: QuestionType, max: i32) -> Self;
     fn get_correct_answer(&self) -> Self::Output;
