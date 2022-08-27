@@ -7,8 +7,7 @@ mod question;
 mod question_type;
 use std::env;
 
-use crate::exam::ExamType;
-
+/// Main function that lunches the app
 fn main() {
     let args: Vec<String> = env::args().collect();
 

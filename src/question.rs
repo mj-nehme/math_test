@@ -2,6 +2,16 @@ use std::fmt::Display;
 
 use crate::question_type::QuestionType;
 
+/// Question Trait is the supertrait that can be either an Equation or an Operation
+///
+///            Question
+///      _________|_________
+///      |                 |
+///  Operation         Equation
+///               _________|_________
+///               |                 |
+///           OneVariable     TwoVariables
+///
 pub trait Question: Display {
     type Output: PartialEq;
 

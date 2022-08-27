@@ -1,5 +1,6 @@
 use std::io::{self};
 
+/// Reads a number from Stdin and asserts that the number is within the provisioned bounds
 pub fn read_number(min: i32, max: i32) -> i32 {
     loop {
         let mut input_text = String::new();

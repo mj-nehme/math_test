@@ -6,6 +6,7 @@ use genpdf::{style::Style, Document};
 
 use crate::question::Question;
 
+/// Genrates a Pdf file given an Exam
 pub fn generate_pdf<T: Question>(exam: &Exam<T>) {
     println!("Generating PDF file...");
 
@@ -38,6 +39,7 @@ pub fn generate_pdf<T: Question>(exam: &Exam<T>) {
     println!("File {} generated", file_name);
 }
 
+/// Writes a Question into the Pdf file
 fn push_question<T: Question>(question: &T, id: i32, doc: &mut Document) {
     let title = format!("Question {}: ", id);
 

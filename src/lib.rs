@@ -12,13 +12,13 @@ mod pdf;
 use crate::exam::ExamType;
 use crate::operation::Operation;
 
+/// Generates an Exam object given the question type, exam level, number of questions and the exam type (pdf or cmd)
 pub fn generate_exam(
     question_type_i32: i32,
     level: i32,
     number_of_questions: i32,
     exam_type: ExamType,
 ) {
-    verify_level(level);
     let question_type = QuestionType::get(question_type_i32).unwrap();
     match question_type {
         QuestionType::Operation(_) => {
@@ -40,13 +40,7 @@ pub fn generate_exam(
     }
 }
 
+/// Prints the list of Exam types
 pub fn print_list() {
     QuestionType::print_list();
-}
-
-fn verify_level(level: i32) {
-    match level {
-        1..=10 => (),
-        _ => panic!("Unhandled level!"),
-    }
 }
