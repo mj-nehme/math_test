@@ -1,8 +1,5 @@
 use super::Exam;
-use crate::{
-    operation::Operation, question::Question, question_type::OperationType,
-    question_type::QuestionType,
-};
+use crate::{operation::Operation, question_type::OperationType, question_type::QuestionType};
 
 #[test]
 fn test_exam() {

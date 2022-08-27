@@ -1,6 +1,7 @@
 use std::fmt;
 
 use crate::{
+    number,
     question::Question,
     question_type::{EquationType, QuestionType},
 };
@@ -16,13 +17,19 @@ pub struct OneVariable {
 }
 impl fmt::Display for OneVariable {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
-        write!(f, "{}x + {} = {}", self.a, self.b, self.result)
+        if self.b < 0 {
+            write!(f, "{}x{} = {}", self.a, self.b, self.result)
+        } else {
+            write!(f, "{}x+{} = {}", self.a, self.b, self.result)
+        }
     }
 }
 
 impl Equation for OneVariable {}
 
 impl Question for OneVariable {
+    type Output = i32;
+
     fn new(equation: QuestionType, max: i32) -> Self {
         match equation {
             QuestionType::Equation(EquationType::OneVariable) => {
@@ -53,11 +60,18 @@ impl Question for OneVariable {
         return result;
     }
 
-    fn print(&self) {
-        if self.b < 0 {
-            println!("{}x{}={}", self.a, self.b, self.result);
+    fn post(&self) -> bool {
+        let expected = self.get_expected_answer();
+        self.print();
+
+        let answer = number::read_number();
+
+        if answer == expected {
+            println!("Correct Answer!");
+            return true;
         } else {
-            println!("{}x+{}={}", self.a, self.b, self.result);
+            println!("Wrong! The correct Answer was {}", expected);
+            return false;
         }
     }
 }

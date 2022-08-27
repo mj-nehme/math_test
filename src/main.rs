@@ -36,15 +36,15 @@ fn main() {
 }
 
 pub fn validate_level(level: i32) {
-    if level < 1 || level > 10 {
-        panic!("Sorry you're not smart enough to follow the rules!");
+    match level {
+        1..=10 => {}
+        _ => panic!("Sorry you're not smart enough to follow the rules!"),
     }
 }
 
 pub fn validate_quiz_type(quiz_type: i32) {
-    if quiz_type < 1 || quiz_type > 6 {
-        panic!("Sorry you're not smart enough to follow the rules!");
-    } else if quiz_type == 6 {
-        panic!("Sorry this option (TwoVariables) isn't implemented yet!");
+    match quiz_type {
+        1..=6 => {}
+        _ => panic!("Sorry you're not smart enough to follow the rules!"),
     }
 }

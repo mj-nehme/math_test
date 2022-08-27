@@ -34,6 +34,7 @@ pub fn run(args: Vec<String>, question_type: QuestionType, level: i32, number_of
 }
 
 fn execute_exam<T: Question>(args: Vec<String>, exam: Exam<T>) {
+    
     if args.len() == 1 {
         exam.post_cmd();
     } else {

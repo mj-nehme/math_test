@@ -1,8 +1,9 @@
-use std::{str, fmt};
+use std::{fmt, str};
 
 use crate::{
+    number,
     question::Question,
-    question_type::{self, OperationType, QuestionType},
+    question_type::{OperationType, QuestionType},
 };
 use rand::Rng;
 
@@ -22,11 +23,13 @@ impl Operation {
 
 impl fmt::Display for Operation {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
-        write!(f, "{} {} {} = ", self.a, self.op, self.b)
+        write!(f, "{}{}{} = ", self.a, self.op, self.b)
     }
 }
 
 impl Question for Operation {
+    type Output = i32;
+
     fn new(operation: QuestionType, max: i32) -> Operation {
         match operation {
             QuestionType::Operation(OperationType::Division) => {
@@ -113,11 +116,19 @@ impl Question for Operation {
         }
     }
 
-    fn print(&self) {
-        let mut output: String = self.a.to_string();
-        output.push_str(&self.op.to_string());
-        output.push_str(&self.b.to_string());
-        println!("{}", output);
+    fn post(&self) -> bool {
+        let expected = self.get_expected_answer();
+        self.print();
+
+        let answer = number::read_number();
+
+        if answer == expected {
+            println!("Correct Answer!");
+            return true;
+        } else {
+            println!("Wrong! The correct Answer was {}", expected);
+            return false;
+        }
     }
 }
 
