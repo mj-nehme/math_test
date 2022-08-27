@@ -16,6 +16,7 @@ pub struct Exam<T: Question> {
     exam_type: ExamType,
 }
 
+#[allow(dead_code)]
 impl<T> Exam<T>
 where
     T: Question,

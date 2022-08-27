@@ -1,12 +1,10 @@
-use crate::{
-    exam::{Exam, ExamType},
-    question_type::{self, QuestionType},
-};
+use crate::{exam::Exam, question_type};
 use genpdf::{style::Style, Document};
 
 use crate::question::Question;
 
 /// Genrates a Pdf file given an Exam
+#[allow(dead_code)]
 pub fn generate_pdf<T: Question>(exam: &Exam<T>) {
     println!("Generating PDF file...");
 

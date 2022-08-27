@@ -1,11 +1,10 @@
+use super::Equation;
 use crate::{
     number,
     question::Question,
     question_type::{EquationType, QuestionType},
 };
 use std::fmt;
-mod tuple;
-use super::Equation;
 
 #[derive(Debug)]
 pub struct TwoVariables {
@@ -102,12 +101,10 @@ impl Question for TwoVariables {
     }
 
     fn read_answer_from_cmd() -> (i32, i32) {
-        print!("x=");
+        println!("Enter x:");
         let x = number::read_number(-1000000, 1000000);
-        println!("");
-        print!("y=");
+        println!("Enter y:");
         let y = number::read_number(-1000000, 1000000);
-        println!("");
         (x, y)
     }
 

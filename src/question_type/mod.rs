@@ -11,12 +11,14 @@ use std::fmt;
 ///             OneVariable     TwoVariables
 ///
 #[derive(Debug, Copy, Clone, PartialEq)]
+#[allow(dead_code)]
 pub enum QuestionType {
     Operation(OperationType),
     Equation(EquationType),
 }
 
 /// OperationType is an enum that has Addition, Subtraction, Multiplication and Division
+#[allow(dead_code)]
 #[derive(Debug, Copy, Clone, PartialEq)]
 pub enum OperationType {
     Addition,
@@ -30,12 +32,14 @@ pub enum OperationType {
 ///      _________|_________
 ///      |                 |
 ///  OneVariable     TwoVariables
+#[allow(dead_code)]
 #[derive(Debug, Copy, Clone, PartialEq)]
 pub enum EquationType {
     OneVariable,
     TwoVariables,
 }
 
+#[allow(dead_code)]
 impl QuestionType {
     pub fn get(game_option: i32) -> Result<Self, &'static str> {
         match game_option {
