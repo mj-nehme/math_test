@@ -13,7 +13,7 @@ The student can choose one exam out of six:
 - Multiplication
 - Division
 - One Variable Equation
-- Two Variables Equation (unimplemented yet)
+- Two Variables Equation
 
 The student has the option to choose the complexity level up to level 10.
 

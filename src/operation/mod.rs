@@ -76,7 +76,7 @@ impl Question for Operation {
         }
     }
 
-    fn get_expected_answer(&self) -> i32 {
+    fn get_correct_answer(&self) -> i32 {
         self.result
     }
 
@@ -116,19 +116,20 @@ impl Question for Operation {
         }
     }
 
-    fn post(&self) -> bool {
-        let expected = self.get_expected_answer();
+    fn post_to_cmd(&self) -> bool {
+        let correct_answer = self.get_correct_answer();
         self.print();
 
-        let answer = number::read_number();
+        let answer = Operation::read_answer_from_cmd();
+        Operation::verify_answer(correct_answer, answer)
+    }
 
-        if answer == expected {
-            println!("Correct Answer!");
-            return true;
-        } else {
-            println!("Wrong! The correct Answer was {}", expected);
-            return false;
-        }
+    fn read_answer_from_cmd() -> i32 {
+        number::read_number(-1000000, 1000000)
+    }
+
+    fn correct_answer_to_string(&self) -> String {
+        format!("{}", self.result)
     }
 }
 

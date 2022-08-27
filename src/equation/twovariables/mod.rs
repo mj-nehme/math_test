@@ -1,11 +1,10 @@
-use std::fmt;
-
 use crate::{
     number,
     question::Question,
     question_type::{EquationType, QuestionType},
 };
-
+use std::fmt;
+mod tuple;
 use super::Equation;
 
 #[derive(Debug)]
@@ -47,14 +46,13 @@ impl Question for TwoVariables {
 
     fn new(equation: QuestionType, max: i32) -> Self {
         if let QuestionType::Equation(EquationType::TwoVariables) = equation {
-            //ax+b=result
             let x: i32 = <Self as Equation>::choose_variable(max);
+            let y: i32 = <Self as Equation>::choose_variable(max);
+
             let a: i32 = <Self as Equation>::choose_variable(max);
             let b: i32 = <Self as Equation>::choose_variable(max);
-            let y: i32 = <Self as Equation>::choose_variable(max);
             let c: i32 = <Self as Equation>::choose_variable(max);
             let d: i32 = <Self as Equation>::choose_variable(max);
-
             let (result1, result2) = TwoVariables::calculate(&Self {
                 a,
                 b,
@@ -76,11 +74,11 @@ impl Question for TwoVariables {
                 y,
             }
         } else {
-            panic!("Unexpected Question Type");
+            panic!("Uncorrect_answer Question Type");
         }
     }
 
-    fn get_expected_answer(&self) -> (i32, i32) {
+    fn get_correct_answer(&self) -> (i32, i32) {
         (self.x, self.y)
     }
 
@@ -89,28 +87,32 @@ impl Question for TwoVariables {
         let by = self.b * self.y;
         let cx = self.c * self.x;
         let dy = self.d * self.y;
-        let result1: i32 = ax + by;
-        let result2: i32 = cx + dy;
-        return (result1, result2);
+        let result1 = ax + by;
+        let result2 = cx + dy;
+
+        (result1, result2)
     }
 
-    fn post(&self) -> bool {
-        let expected = self.get_expected_answer();
+    fn post_to_cmd(&self) -> bool {
+        let correct_answer = self.get_correct_answer();
         self.print();
 
-        let answer_x = number::read_number();
-        let answer_y = number::read_number();
+        let answer = TwoVariables::read_answer_from_cmd();
+        TwoVariables::verify_answer(correct_answer, answer)
+    }
 
-        if (answer_x, answer_y) == expected {
-            println!("Correct Answer!");
-            return true;
-        } else {
-            println!(
-                "Wrong! The correct Answer was x = {}, y = {}",
-                expected.0, expected.1
-            );
-            return false;
-        }
+    fn read_answer_from_cmd() -> (i32, i32) {
+        print!("x=");
+        let x = number::read_number(-1000000, 1000000);
+        println!("");
+        print!("y=");
+        let y = number::read_number(-1000000, 1000000);
+        println!("");
+        (x, y)
+    }
+
+    fn correct_answer_to_string(&self) -> String {
+        format!("x = {}, y = {}", self.x, self.y)
     }
 }
 

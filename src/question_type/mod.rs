@@ -29,7 +29,7 @@ impl QuestionType {
             4 => Ok(QuestionType::Operation(OperationType::Division)),
             5 => Ok(QuestionType::Equation(EquationType::OneVariable)),
             6 => Ok(QuestionType::Equation(EquationType::TwoVariables)),
-            _ => Err("Not found option"),
+            _ => Err("Unrecognized option"),
         }
     }
 
@@ -74,14 +74,6 @@ impl fmt::Display for EquationType {
         }
     }
 }
-
-/*
-impl From<QuestionType> for OperationType {
-    fn from(question_type: QuestionType) -> Self {
-        QuestionType::Operation(item)
-    }
-}
-*/
 
 #[cfg(test)]
 mod tests;

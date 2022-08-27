@@ -3,7 +3,7 @@ use genpdf::Document;
 
 use crate::question::Question;
 
-pub fn generate_pdf<T: Question>(exam: Exam<T>) {
+pub fn generate_pdf<T: Question>(exam: &Exam<T>) {
     println!("Generating PDF file...");
     // Load a font from the file system
     let font_family = genpdf::fonts::from_files("./fonts", "LiberationSans", None)
