@@ -1,6 +1,6 @@
 use rand::Rng;
-pub(crate) mod onevariable;
-pub(crate) mod twovariables;
+pub mod onevariable;
+pub mod twovariables;
 use crate::question::Question;
 
 pub trait Equation: Question {
@@ -8,13 +8,7 @@ pub trait Equation: Question {
     where
         Self: Sized,
     {
-        loop {
-            let mut rng = rand::thread_rng();
-            let num = rng.gen_range(-max..max);
-            //exclude 0
-            if num != 0 {
-                return num;
-            }
-        }
+        let mut rng = rand::thread_rng();
+        rng.gen_range(-max..0, 0..max);
     }
 }
