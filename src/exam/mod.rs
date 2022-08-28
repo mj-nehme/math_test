@@ -47,13 +47,14 @@ where
         }
     }
 
-    pub fn get(&self) -> &Vec<T> {
+    pub fn get_questions(&self) -> &Vec<T> {
         &self.questions
     }
 
     pub fn get_level(&self) -> i32 {
         self.level
     }
+
     pub fn get_question_type(&self) -> QuestionType {
         self.question_type
     }
@@ -79,7 +80,7 @@ where
             println!("Score: {}/{}\n--------", score, posted);
         }
 
-        println!("Score: {}/{}\n--------", score, self.get().len());
+        println!("Score: {}/{}\n--------", score, self.get_questions().len());
     }
 
     pub fn post(&self) {
@@ -90,7 +91,7 @@ where
         }
     }
 
-    fn level_complexity(level: i32) -> i32 {
+    pub fn level_complexity(level: i32) -> i32 {
         level * 10
     }
 }

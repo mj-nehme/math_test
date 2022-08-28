@@ -1,23 +1,29 @@
-#[test]
-#[allow(dead_code)]
-fn add_test() {}
+#[cfg(test)]
+mod tests {
 
-#[test]
-#[allow(dead_code)]
-fn subtract_test() {}
+    use math_test::{
+        exam::{Exam, ExamType},
+        operation::Operation,
+        question::Question,
+        question_type::OperationType,
+    };
 
-#[test]
-#[allow(dead_code)]
-fn multiply_test() {}
+    #[test]
+    #[allow(dead_code)]
+    fn generate_addition_exam_test() {
+        let question_type = OperationType::Addition;
+        let level = 7;
+        let number_of_questions = 5;
+        let exam_type = ExamType::Cmd;
+        let exam = Exam::<Operation>::new(
+            math_test::QuestionType::Operation(question_type),
+            level,
+            number_of_questions,
+            exam_type,
+        );
 
-#[test]
-#[allow(dead_code)]
-fn divide_test() {}
-
-#[test]
-#[allow(dead_code)]
-fn onevariable_test() {}
-
-#[test]
-#[allow(dead_code)]
-fn twovariable_test() {}
+        for question in exam.get_questions() {
+            assert_eq!(question.calculate(), question.get_correct_answer());
+        }
+    }
+}

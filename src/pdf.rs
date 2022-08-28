@@ -23,7 +23,7 @@ pub fn generate_pdf<T: Question>(exam: &Exam<T>) {
         doc.set_font_size(12);
     }
 
-    let questions = exam.get();
+    let questions = exam.get_questions();
     let mut counter = 1;
     for question in questions {
         push_question(question, counter, &mut doc);

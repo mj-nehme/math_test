@@ -12,8 +12,8 @@ fn test_exam() {
 
     assert_eq!(exam.get_question_type(), question_type);
     assert_eq!(exam.get_level(), level);
-    assert_eq!(exam.get().len(), number_of_questions as usize);
-    for question in exam.questions {
+    assert_eq!(exam.get_questions().len(), number_of_questions as usize);
+    for question in exam.get_questions() {
         assert_eq!(question.calculate(), question.get_correct_answer());
     }
 }
