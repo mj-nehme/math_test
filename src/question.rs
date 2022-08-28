@@ -3,15 +3,6 @@ use std::fmt::Debug;
 use std::fmt::Display;
 
 /// Question Trait is the supertrait that can be either an Equation or an Operation
-///
-///            Question
-///      _________|_________
-///      |                 |
-///  Operation         Equation
-///               _________|_________
-///               |                 |
-///          OneVariable      TwoVariables
-///
 pub trait Question: Display {
     type Output: PartialEq + Debug;
 

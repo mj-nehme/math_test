@@ -1,16 +1,6 @@
 use std::fmt;
 
 /// QuestionType is an enum that derives into OperationType and EquationType
-///```
-///            QuestionType
-///        _________|_________
-///        |                 |
-///  OperationType      EquationType
-///                 _________|_________
-///                 |                 |
-///             OneVariable     TwoVariables
-///```
-///
 #[allow(dead_code)]
 #[derive(Debug, Copy, Clone, PartialEq)]
 pub enum QuestionType {
@@ -32,12 +22,7 @@ pub enum OperationType {
     Division,
 }
 
-/// EquationType is an enum that has OneVariable or TwoVariables
-///         EquationType
-///      _________|_________
-///      |                 |
-///  OneVariable     TwoVariables
-///
+/// EquationType is an enum that inherits QuestionType and derives to OneVariable or TwoVariables
 #[allow(dead_code)]
 #[derive(Debug, Copy, Clone, PartialEq)]
 pub enum EquationType {
