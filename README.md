@@ -3,7 +3,7 @@
 A math test prepared for my kids who are still in their elementary school.
 
 Current status: <span style="color:green"> **Running** </span>.
-For more details please follow the milestone "[Version 1](https://github.com/mj-nehme/math_test/milestone/1)".
+For more details please follow the milestone "[Version 2](https://github.com/mj-nehme/math_test/milestone/2)".
 
 This project is being built for learning purposes and will be watched and developed in my free time only.
 
