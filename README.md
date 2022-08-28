@@ -25,7 +25,7 @@ An exam can be either solved from the console (`cargo run`) or can be prepared i
 
 Please read the [open issues](https://github.com/mj-nehme/math_test/issues?q=is%3Aopen+is%3Aissue).
 
-## Room of Contributions
+## Like to Contribute?
 For contributing to this project, please have a look on our [CODE_OF_CONDUCT](https://github.com/mj-nehme/math_test/blob/master/CODE_OF_CONDUCT.md) and [CONTRIBUTING](https://github.com/mj-nehme/math_test/blob/master/CONTRIBUTING.md) guidlines.
 
 ## NOTE
