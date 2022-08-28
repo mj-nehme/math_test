@@ -31,22 +31,16 @@ impl Question for OneVariable {
     type Output = i32;
 
     fn new(equation: QuestionType, max: i32) -> Self {
-        match equation {
-            QuestionType::Equation(EquationType::OneVariable) => {
-                //ax+b=result
-                let x: i32 = <Self as Equation>::choose_variable(max);
-                let a: i32 = <Self as Equation>::choose_variable(max);
-                let b: i32 = <Self as Equation>::choose_variable(max);
+        if let QuestionType::Equation(EquationType::OneVariable) = equation {
+            //ax+b=result
+            let x: i32 = <Self as Equation>::choose_variable(max);
+            let a: i32 = <Self as Equation>::choose_variable(max);
+            let b: i32 = <Self as Equation>::choose_variable(max);
 
-                let result = OneVariable::calculate(&Self { a, b, result: 0, x });
-                Self { a, x, b, result }
-            }
-            QuestionType::Equation(EquationType::TwoVariables) => {
-                panic!("Should be handled in TwoVariables");
-            }
-            QuestionType::Operation(_) => {
-                panic!("Should be handled in Operation");
-            }
+            let result = OneVariable::calculate(&Self { a, b, result: 0, x });
+            Self { a, x, b, result }
+        } else {
+            panic!("Unexpected Behaviour");
         }
     }
 
@@ -69,6 +63,7 @@ impl Question for OneVariable {
     }
 
     fn read_answer_from_cmd() -> i32 {
+        println!("Guess x:");
         number::read_number(-1000000, 1000000)
     }
 

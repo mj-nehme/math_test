@@ -73,7 +73,7 @@ impl Question for TwoVariables {
                 y,
             }
         } else {
-            panic!("Uncorrect_answer Question Type");
+            panic!("Unexpected Behaviour");
         }
     }
 
@@ -101,9 +101,9 @@ impl Question for TwoVariables {
     }
 
     fn read_answer_from_cmd() -> (i32, i32) {
-        println!("Enter x:");
+        println!("Guess x:");
         let x = number::read_number(-1000000, 1000000);
-        println!("Enter y:");
+        println!("Guess y:");
         let y = number::read_number(-1000000, 1000000);
         (x, y)
     }

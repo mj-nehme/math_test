@@ -71,7 +71,7 @@ impl Question for Operation {
                 Operation { a, op, b, result }
             }
             QuestionType::Equation(_) => {
-                panic!("Should be handled in Equation");
+                panic!("Unexpected Behaviour");
             }
         }
     }
