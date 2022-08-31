@@ -101,9 +101,9 @@ impl Question for TwoVariables {
     }
 
     fn read_answer_from_cmd() -> (i32, i32) {
-        println!("Guess x:");
+        println!("Determine x:");
         let x = number::read_number(-1000000, 1000000);
-        println!("Guess y:");
+        println!("Determine y:");
         let y = number::read_number(-1000000, 1000000);
         (x, y)
     }

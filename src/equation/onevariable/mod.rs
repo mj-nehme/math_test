@@ -63,7 +63,7 @@ impl Question for OneVariable {
     }
 
     fn read_answer_from_cmd() -> i32 {
-        println!("Guess x:");
+        println!("Determine x:");
         number::read_number(-1000000, 1000000)
     }
 
