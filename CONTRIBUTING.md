@@ -2,7 +2,7 @@ For contiributing to this project, please have a look on the [open issues](https
 
 It's preferred to start with one that has a **good-first-issue** label.
 
-A math `Exam` is a `Vec<Question>` where each `Question` is structured as follows
+A math `Exam` is a `Vec<Question>` where a `Question` is structured as follows
 
 
                Question
