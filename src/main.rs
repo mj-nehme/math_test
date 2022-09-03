@@ -29,20 +29,12 @@ fn main() {
     println!("===========================");
 
     if args.len() == 1 {
-        math_test::generate_exam(
-            question_type_i32,
-            level,
-            number_of_questions,
-            math_test::exam::ExamType::Cmd,
-        );
+        math_test::generate_exam(question_type_i32, level, number_of_questions, 0);
     } else {
         if args[1] == "pdf" {
-            math_test::generate_exam(
-                question_type_i32,
-                level,
-                number_of_questions,
-                math_test::exam::ExamType::Pdf,
-            );
+            math_test::generate_exam(question_type_i32, level, number_of_questions, 1);
+        } else if args[1] == "txt" {
+            math_test::generate_exam(question_type_i32, level, number_of_questions, 2);
         } else {
             panic!("Unknown argument");
         }

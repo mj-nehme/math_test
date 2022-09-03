@@ -3,9 +3,25 @@ use crate::question::Question;
 use crate::question_type::QuestionType;
 
 #[derive(PartialEq, Clone)]
+#[repr(i32)]
 pub enum ExamType {
-    Cmd,
-    Pdf,
+    Cmd = 0, // Terminal
+    Pdf = 1, // Generate pdf file
+    Txt = 2, // Generate txt file
+    Jsc = 3, // For JS use
+    Arr = 4, // Bare Array
+}
+
+impl From<i32> for ExamType {
+    fn from(num: i32) -> Self {
+        match num {
+            0 => ExamType::Cmd,
+            1 => ExamType::Pdf,
+            2 => ExamType::Txt,
+            3 => ExamType::Jsc,
+            _ => ExamType::Arr,
+        }
+    }
 }
 
 #[derive(Clone)]
@@ -13,7 +29,6 @@ pub struct Exam<T: Question> {
     level: i32,
     question_type: QuestionType,
     questions: Vec<T>,
-    exam_type: ExamType,
 }
 
 #[allow(dead_code)]
@@ -25,7 +40,6 @@ where
         question_type: QuestionType,
         level: i32,
         number_of_questions: i32,
-        exam_type: ExamType,
     ) -> Exam<impl Question> {
         let mut questions: Vec<T> = Vec::new();
         let max = Self::level_complexity(level);
@@ -37,7 +51,6 @@ where
             questions,
             level,
             question_type,
-            exam_type,
         }
     }
 
@@ -83,11 +96,20 @@ where
         println!("Score: {}/{}\n--------", score, self.get_questions().len());
     }
 
-    pub fn post(&self) {
-        if self.exam_type == ExamType::Cmd {
+    pub fn post(&self, exam_type: i32) {
+        let exam_type: ExamType = exam_type.into();
+        if exam_type == ExamType::Cmd {
             self.post_to_cmd();
-        } else if self.exam_type == ExamType::Pdf {
+        } else if exam_type == ExamType::Pdf {
             pdf::generate_pdf(self);
+        } else if exam_type == ExamType::Txt {
+            // To be handled later
+            //self.post_to_txt();
+        } else if exam_type == ExamType::Jsc {
+            // To be handled later
+            //self.post_to_JS();
+        } else {
+            // To be handled later
         }
     }
 
