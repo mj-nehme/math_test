@@ -1,7 +1,5 @@
 # math_test
 
-## This project is depricated and will be deleted soon. Please follow the [math_exam](https://github.com/mj-nehme/math_exam) project instead.
-
 A math test prepared for my kids who are still in their elementary school.
 
 This project is being built for learning purposes and will be watched and developed in my free time only.
